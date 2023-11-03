@@ -53,6 +53,15 @@ static PyMethodDef FincoreMethods[] = {
 	{NULL, NULL, 0, NULL}
 };
 
-PyMODINIT_FUNC initfincore(void) {
-	(void)Py_InitModule("fincore", FincoreMethods);
+static struct PyModuleDef cModPyDem =
+{
+    PyModuleDef_HEAD_INIT,
+    "fincore", /* name of module */
+    "",          /* module documentation, may be NULL */
+    -1,          /* size of per-interpreter state of the module, or -1 if the module keeps state in global variables. */
+    FincoreMethods
+};
+
+PyMODINIT_FUNC PyInit_fincore(void) {
+    return PyModule_Create(&cModPyDem);
 }
